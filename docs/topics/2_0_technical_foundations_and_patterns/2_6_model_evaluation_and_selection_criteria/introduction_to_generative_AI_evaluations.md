@@ -1,0 +1,50 @@
+<!-- 
+ Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+ SPDX-License-Identifier: CC-BY-SA-4.0
+ -->
+
+# Introduction to Generative AI Evaluations
+
+**Content Level: 100**
+
+## Suggested Pre-Reading
+
+* [Generative AI Fundamentals](../../1_0_generative_ai_fundamentals/1_1_core_concepts_and_terminology/core_concepts_and_terminology.md)
+
+## TL;DR
+
+Evaluating generative AI is hard. Traditional evaluation techniques often do not work. It can be hard to understand what we even need to measure. Nevertheless, evaluation is often the single most important component of success for all generative AI applications. We primarily use evaluations to help us find issues in our applications and suggest solutions. We also use them to score how well things are working, and build trust with our stakeholders that the system will work as expected.  In this post we briefly review the new challenges and opportunities that accompany evaluations in the context of generative AI applications, and then walk thorough high-level concepts for building an excellent evaluation framework.
+
+## What makes Generative AI different?
+Generative AI is all about reasoning.  Using an LLM has more in common with asking a coworker to write a summary of their job roles than it does with asking a calculator what 3 times 3 is.  When asking the coworker, you are asking them to reason, and it may not always be clear exactly what goes into that reasoning.  Even worse, from an evaluation standpoint, your coworker’s answer could take many different forms and still be ‘correct’, making it difficult to measure accuracy as a single number.  On the other hand, when asking a calculator for 3 times 3, you could look inside and see exactly what happens to give you the same right answer every time.  
+The good news is that while reasoning is new for AI/ML models, it’s old hat for the human race.  We have been reasoning, and judging each other’s reasoning for ages.  As a simple example, consider what happens if you turn in an essay during a high school literature class.  The teacher certainly doesn’t throw their hands up in despair because there is no one right answer to how to write the essay, and no way to mathematically prove the exact score it should get.  Instead, the teacher sits down and reads the essay, then “reasons” on what score it deserves.  This is the same pattern we see with Generative AI; it often requires reasoning (using generative AI models as a judge) in order to evaluate reasoning (the output from generative AI models).
+
+## What makes evaluations powered by Generative AI different?
+At some point in your life you may have had the experience described above of writing an essay in school and having it graded by your professor. When the essay is returned you first look at the score at the top. Perhaps a giant red F immediately lets you know how you did on the paper. What then? If you had a bad professor then all you got was the score, leaving you stuck and wondering where you went wrong. However, if you had a good professor, that F was immediately followed by feedback written all over the paper. This feedback would show exactly where you went wrong and include specific advice for improving in the future. Armed with this feedback, you come away with a clear plan for improvement and the confidence that you can achieve your goals. That’s the experience we are aiming at with generative AI evaluations, powered by generative AI. We want to know how we’re doing, where we went wrong, and how to get better. If your current evaluation method provides “only a score”, you can do so much better!
+
+## Making it Practical
+To build a strong testing framework, we need to start with a set of human curated question / answer pairs. These will be our gold standard of what the model should be doing. The quality of these questions will drive the quality of our entire workload.  Everything else we do is targeted towards making a system that can produce these gold standard outputs, so it is absolutely critical that they are correct.  If the gold standard answers are wrong, then the entire system will be designed to generate bad output.  Because of this, NEVER use generative AI to write your gold standard output.  Every minute spent building these test questions will pay back your investment 10-fold in time saved debugging and in quality of your final output. It’s also a great way to align your team on what the project is trying to accomplish.
+
+Successful generative AI frameworks usually have these seven traits in common:
+
+1. **Fast**. The full evaluation should run in seconds. Each run of an evaluation test harness equates to one test of a change in the system. If an engineer can run a single evaluation a day, that means they are limited to a single change a day, and innovation will be very slow. On the other hand, by lowering the cost in time for each change to be tested, an engineer can test hundreds of possible improvements each day, unlocking rapid innovation and improvements. Slower, human in the loop systems may still be used to collection additional feedback, but it should not be allowed to become a bottleneck in the speed of development.
+2. **Quantifiable**. The evaluation should produce tunable numeric results. This allows direct objective comparisons between subsequent runs, giving direct feedback on the impact of any chance that occurred between runs. For generative AI, there is usually not one “correct” way to grade generative output. Instead, this number needs to be tunable so that the numeric score is based on the particular workload being evaluated. For example, in some cases a difference in spelling may be significant, and require a much lower score, where other use cases may not be concerned with spelling at all.  Adding a clear rubric for what matters is often required for reliable quantitative grading.
+3. **Explainable**. The numeric score should be accompanied with reasoning. Unlike pre-gen ai evaluations, gen ai based systems can produce an actual reasoned explanation for why they give each score. This reasoning is critical, as it allows an engineer to either tune the judge in case the reasoning is incorrect, or else tune how the system is reasoning. This reasoning often is the only way to uncover hidden sources of significant problems because generative AI models regularly use implicit reasoning. Ideally, although not directly a part of the evaluation framework, the system being evaluated will also generate a separate reasoning on why each answer was generated. By looking at the reasoning on both sides, system and evaluation, engineers often get clear and actionable insights for improving the system. This is particularly true when the reasoning on both sides is grouped by category and accuracy, then summarized.
+4. **Numerous**. Even a finely tuned numeric evaluation is not going to be exact every time, and the system itself, being non-deterministic, is usually not going to produce the same outputs every time. The best way to combat variation in score is with quantity. We recommend at least 100 test cases per evaluation. Spreading out the variation across so many test cases creates a real, consistent, and trustable evaluation. To handle this many test cases, your system should automatically group all results by category and by correctness, then create a meta-summary of the reasoning in each group.
+5. **Segmented**. The evaluation framework should be able to evaluate every step in the workload, not only the final result.  This allows the builder to apply evaluation feedback to the exact portion of the workload where it will have the most impact. For example, a result like “your workload is 50% accurate” is far less useful than “Step 1 of your workload is 95% accurate, and step two of your workload is 5% accurate.”. The evaluation framework should have the hooks needed to attach to all the various sections of the workload, so that each can be evaluated individually.  Note that this means you need a gold standard dataset for each step in your workload.
+6. **Diverse**. The evaluation framework should cover all possible use cases. This is often accomplished by breaking down the test cases by type or category. For example, input might be divided into things like “weather questions”, “sports questions”, “off topic questions”, and “inappropriate questions”. The evaluation framework should then provide a breakdown of scores, and a summary of reasonings, by each category. This should ensure that the evaluation is covering the full range of actions the system might take, as well as provides highly targeted and actionable feedback to the engineer for improving the system.
+7. **Traditional**. Many portions of generative AI systems use traditional technologies which have traditional, excellent means of evaluation. It’s important to consider the best tool for the job, and in many cases the best tool is not generative AI. For example, RAG is a common generative AI architecture pattern which incorporates database search. The searching component may use vector, SQL, graph, or other technologies that were around long before LLM’s. Traditional database tools and metrics like precision, accuracy etc. can still be very useful to evaluate the performance of these steps.  Additionally, some prompts (like semantic routers) may output something simple like a number indicating which prompt to run next.  In those cases, a simple programmatic compare of output to gold standard output using a programming language is much preferred over using generative AI.
+
+## Get Hands-On
+
+* [Create a Bedrock Evaluation Job](https://docs.aws.amazon.com/bedrock/latest/userguide/model-evaluation-type-judge.html){:target="_blank" rel="noopener noreferrer"}
+
+## Further Reading
+
+* [Bedrock Evaluation Documentation](https://docs.aws.amazon.com/bedrock/latest/userguide/evaluation.html){:target="_blank" rel="noopener noreferrer"}
+
+## Contributors
+
+**Authors:** 
+
+- Justin Muller - Principal Applied AI Architect 

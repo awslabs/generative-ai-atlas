@@ -1,0 +1,199 @@
+name: Deploy MkDocs to GitHub Pages
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  actions: none
+  attestations: none
+  checks: none
+  contents: none
+  deployments: none
+  discussions: none
+  id-token: none
+  issues: none
+  models: none
+  packages: none
+  pages: none
+  pull-requests: none
+  repository-projects: none
+  security-events: none
+  statuses: none
+
+jobs:
+  build:
+    permissions:
+      contents: read
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@08c6903cd8c0fde910a37f88322edcfb5dd907a8 # v5.0.0
+        with:
+          fetch-depth: 0  # Required for git-revision-date-localized plugin to get commit history
+
+      - name: Set up Python
+        uses: actions/setup-python@e797f83bcb11b83ae66e0230d6156d7c80228e7c # v6.0.0
+        with:
+          python-version: '3.12' # I recommend 3.x unless there are incompatibilites... use minor not full 3.12 3.12.5'
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@85856786d1ce8acfbcc2f13a5f3fbd6b938f9f41 # v7.1.2
+        with:
+          enable-cache: true
+
+      - name: Cache privacy plugin data
+        uses: actions/cache@0057852bfaa89a56745cba8c7296529d2fc39830 # v4.3.0
+        with:
+          path: .cache/plugins/privacy
+          key: ${{ runner.os }}-privacy-${{ hashFiles('mkdocs.yml') }}
+          restore-keys: |
+            ${{ runner.os }}-privacy-
+
+      - name: Install dependencies
+        run: uv sync --frozen
+
+      - name: Verify custom directories exist
+        run: |
+          echo "Checking for required custom directories..."
+          test -d overrides && echo "✓ overrides directory found" || echo "⚠ overrides directory missing"
+          test -d docs/stylesheets && echo "✓ stylesheets directory found" || echo "⚠ stylesheets directory missing"
+          test -f hooks/config_hook.py && echo "✓ config hook found" || echo "⚠ config hook missing"
+          test -d scripts && echo "✓ scripts directory found" || echo "⚠ scripts directory missing"
+
+      - name: Run pre-build content processing scripts
+        run: |
+          echo "Running content processing scripts..."
+          uv run python ./scripts/fix-tl-dr.py ./docs/
+          uv run python ./scripts/fix-content-level.py ./docs/
+          uv run python ./scripts/fix-image-references.py ./docs/
+          uv run python ./scripts/fix-suggested-prereading.py ./docs/
+          uv run python ./scripts/copyright-checker.py ./docs/
+
+      - name: Build MkDocs site
+        run: uv run mkdocs build --site-dir public
+        env:
+          # IMPORTANT: Update site_url in mkdocs.yml before deploying to GitHub Pages
+          # Should be changed to: https://<username>.github.io/<repo-name>/ or your custom domain
+          SITE_URL: ${{ github.event.repository.html_url }}
+
+      - name: Run post-build processing scripts
+        run: |
+          echo "Running post-build processing scripts..."
+          # NOTE: cross-site-authentication-lint.py may reference AWS-internal URLs
+          uv run python ./scripts/cross-site-authentication-lint.py ./public/
+          # NOTE: rag.py generates RAG embeddings for search functionality
+          uv run python ./scripts/rag.py ./docs/topics/ ./public/rag/
+
+      - name: Upload artifact
+        uses: actions/upload-pages-artifact@7b1f4a764d45c48632c6b24a0339c27f5614fb0b # v4.0.0
+        with:
+          name: "github-pages-${{ github.run_id }}-${{ github.run_attempt }}"
+          path: ./public
+
+  code-quality:
+    runs-on: ubuntu-latest
+    needs: build
+    if: always()
+    permissions:
+      actions: read
+      contents: read
+      security-events: write
+    steps:
+      - if: needs.build.result != 'success'
+        run: |
+          cat << EOF > results.sarif
+          {
+            "version": "2.1.0",
+            "\$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.4.json",
+            "runs": [
+              {
+                "tool": {
+                  "driver": {
+                    "name": "${{ github.workflow }}"
+                  }
+                },
+                "results": [
+                  {
+                    "ruleId": "BUILD-STATUS-001",
+                    "level": "error",
+                    "message": {
+                      "text": "The build ${{ needs.build.result }}, run ${{ github.run_id }} attempt ${{ github.run_attempt }} must succeed."
+                    },
+                    "locations": [
+                      {
+                        "physicalLocation": {
+                          "artifactLocation": {
+                            "uri": "${{ github.sha }}"
+                          }
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          }
+          EOF
+          exit 1
+
+      - if: needs.build.result == 'success'
+        run: |
+          cat << EOF > results.sarif
+          {
+            "version": "2.1.0",
+            "\$schema": "https://schemastore.azurewebsites.net/schemas/json/sarif-2.1.0-rtm.4.json",
+            "runs": [
+              {
+                "tool": {
+                  "driver": {
+                    "name": "${{ github.workflow }}"
+                  }
+                },
+                "results": []
+              }
+            ]
+          }
+          EOF
+          exit 0
+
+      - uses: actions/upload-artifact@330a01c490aca151604b8cf639adc76d48f6c5d4 # v5.0.0
+        if: always()
+        with:
+          name: results.sarif
+          path: results.sarif
+          if-no-files-found: error
+          
+      - uses: github/codeql-action/upload-sarif@57eebf61a2246ab60a0c2f5a85766db783ad3553 # v3.28.15
+        if: always()
+        with:
+          sarif_file: results.sarif
+
+  deploy:
+    # Allow only one concurrent deployment, skipping runs queued between the run in-progress and latest queued.
+    # However, do NOT cancel in-progress runs as we want to allow these production deployments to complete.
+    concurrency:
+      group: ${{ github.ref }}
+      cancel-in-progress: false
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    # Deployment job - only runs on push to main branch
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+
+    # Requires approval or rejection
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    timeout-minutes: 1800 # 6 hours is the default
+    runs-on: ubuntu-latest
+    needs: [build, code-quality]
+    steps:
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e # v4.0.5
+        with:
+          artifact_name: "github-pages-${{ github.run_id }}-${{ github.run_attempt }}"

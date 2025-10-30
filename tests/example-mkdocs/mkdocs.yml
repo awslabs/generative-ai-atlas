@@ -1,0 +1,4 @@
+site_name: Mkdocs Github Action Testing
+theme:
+  name: material
+

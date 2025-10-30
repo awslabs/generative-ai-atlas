@@ -1,0 +1,65 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 980 300" width="980" height="300">
+  <!-- Background -->
+  <rect width="980" height="300" fill="white"/>
+  
+  <!-- LLMOps Tools Container -->
+  <rect x="20" y="20" width="180" height="260" fill="#f8f9fa" stroke="#4a5568" stroke-width="2" rx="10" ry="10"/>
+  <text x="110" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2d3748" text-anchor="middle">LLMOps Tools</text>
+  
+  <!-- Observability System Box -->
+  <rect x="35" y="70" width="150" height="70" fill="#edf2f7" stroke="#4a5568" stroke-width="2" rx="8" ry="8"/>
+  <text x="110" y="105" font-family="Arial, sans-serif" font-size="17" fill="#4a5568" text-anchor="middle">Observability</text>
+  <text x="110" y="128" font-family="Arial, sans-serif" font-size="17" fill="#4a5568" text-anchor="middle">System</text>
+  
+  <!-- Orchestrator Container -->
+  <rect x="240" y="20" width="460" height="260" fill="#f8f9fa" stroke="#4a5568" stroke-width="2" rx="10" ry="10"/>
+  <text x="470" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2d3748" text-anchor="middle">Orchestrator</text>
+  
+  <!-- Tracing & Monitoring Box -->
+  <rect x="280" y="70" width="150" height="70" fill="#edf2f7" stroke="#4a5568" stroke-width="2" rx="8" ry="8"/>
+  <text x="355" y="98" font-family="Arial, sans-serif" font-size="17" fill="#4a5568" text-anchor="middle">Tracing &amp;</text>
+  <text x="355" y="121" font-family="Arial, sans-serif" font-size="17" fill="#4a5568" text-anchor="middle">Monitoring</text>
+  
+  <!-- Execution Coordination Box -->
+  <rect x="500" y="70" width="150" height="70" fill="#edf2f7" stroke="#4a5568" stroke-width="2" rx="8" ry="8"/>
+  <text x="575" y="98" font-family="Arial, sans-serif" font-size="17" fill="#4a5568" text-anchor="middle">Execution</text>
+  <text x="575" y="121" font-family="Arial, sans-serif" font-size="17" fill="#4a5568" text-anchor="middle">Coordination</text>
+  
+  <!-- Workflow Definition Box -->
+  <rect x="500" y="180" width="150" height="70" fill="#edf2f7" stroke="#4a5568" stroke-width="2" rx="8" ry="8"/>
+  <text x="575" y="208" font-family="Arial, sans-serif" font-size="17" fill="#4a5568" text-anchor="middle">Workflow</text>
+  <text x="575" y="231" font-family="Arial, sans-serif" font-size="17" fill="#4a5568" text-anchor="middle">Definition</text>
+  
+  <!-- Integration Layers Container -->
+  <rect x="740" y="20" width="220" height="260" fill="#f8f9fa" stroke="#4a5568" stroke-width="2" rx="10" ry="10"/>
+  <text x="850" y="50" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2d3748" text-anchor="middle">Integration Layers</text>
+  
+  <!-- Tools Box -->
+  <rect x="775" y="70" width="150" height="47" fill="#edf2f7" stroke="#4a5568" stroke-width="2" rx="8" ry="8"/>
+  <text x="850" y="98" font-family="Arial, sans-serif" font-size="17" fill="#4a5568" text-anchor="middle">Tools</text>
+  
+  <!-- Knowledge Base Box -->
+  <rect x="775" y="140" width="150" height="47" fill="#edf2f7" stroke="#4a5568" stroke-width="2" rx="8" ry="8"/>
+  <text x="850" y="168" font-family="Arial, sans-serif" font-size="17" fill="#4a5568" text-anchor="middle">Knowledge Base</text>
+  
+  <!-- Models Box -->
+  <rect x="775" y="210" width="150" height="47" fill="#edf2f7" stroke="#4a5568" stroke-width="2" rx="8" ry="8"/>
+  <text x="850" y="238" font-family="Arial, sans-serif" font-size="17" fill="#4a5568" text-anchor="middle">Models</text>
+  
+  <!-- Arrows -->
+  <!-- LLMOps to Tracing -->
+  <line x1="185" y1="105" x2="270" y2="105" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="270,105 260,100 260,110" fill="#4a5568"/>
+  
+  <!-- Tracing to Execution -->
+  <line x1="430" y1="105" x2="490" y2="105" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="490,105 480,100 480,110" fill="#4a5568"/>
+  
+  <!-- Execution to Workflow -->
+  <line x1="575" y1="140" x2="575" y2="170" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="575,170 570,160 580,160" fill="#4a5568"/>
+  
+  <!-- Orchestrator to Integration -->
+  <line x1="650" y1="105" x2="765" y2="105" stroke="#4a5568" stroke-width="2"/>
+  <polygon points="765,105 755,100 755,110" fill="#4a5568"/>
+</svg>

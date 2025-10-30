@@ -1,0 +1,130 @@
+<svg width="1100" height="550" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <filter id="shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="2" stdDeviation="2" flood-opacity="0.12"/>
+    </filter>
+    
+    <marker id="arrowhead" markerWidth="12" markerHeight="8" 
+            refX="10" refY="4" orient="auto">
+      <polygon points="0 0, 12 4, 0 8" fill="#444"/>
+    </marker>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1100" height="550" fill="#FFFFFF"/>
+  
+  <!-- Context Management System box - centered -->
+  <rect x="320" y="60" width="680" height="430" rx="12" ry="12" 
+        fill="#FBF8F1" stroke="#BBBBBB" stroke-width="2" filter="url(#shadow)"/>
+  
+  <!-- Memory storage area - centered within CMS -->
+  <rect x="610" y="90" width="340" height="350" rx="10" ry="10" 
+        fill="#FFFFFF" stroke="#E0E0E0" stroke-width="1.5"/>
+  
+  <!-- Short-term Memory -->
+  <rect x="625" y="110" width="310" height="140" rx="10" ry="10" 
+        fill="#FFF0F3" stroke="#FFCCD5" stroke-width="2"/>
+  <text x="640" y="140" font-family="Arial, Helvetica, sans-serif" font-size="20" 
+        font-weight="bold" fill="#333333">Short-term Memory</text>
+  
+  <!-- Short-term Memory components -->
+  <rect x="635" y="155" width="290" height="35" rx="6" ry="6" 
+        fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1.5"/>
+  <text x="780" y="178" font-family="Arial, Helvetica, sans-serif" font-size="16" 
+        text-anchor="middle" fill="#333333" font-weight="500">Short-term buffer</text>
+        
+  <rect x="635" y="200" width="290" height="35" rx="6" ry="6" 
+        fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1.5"/>
+  <text x="780" y="223" font-family="Arial, Helvetica, sans-serif" font-size="16" 
+        text-anchor="middle" fill="#333333" font-weight="500">Session-based Cache</text>
+  
+  <!-- Long-term Memory -->
+  <rect x="625" y="270" width="310" height="140" rx="10" ry="10" 
+        fill="#EBFBEE" stroke="#C3E6CB" stroke-width="2"/>
+  <text x="640" y="300" font-family="Arial, Helvetica, sans-serif" font-size="20" 
+        font-weight="bold" fill="#333333">Long-term Memory</text>
+  
+  <!-- Long-term Memory components -->
+  <rect x="635" y="315" width="290" height="35" rx="6" ry="6" 
+        fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1.5"/>
+  <text x="780" y="338" font-family="Arial, Helvetica, sans-serif" font-size="16" 
+        text-anchor="middle" fill="#333333" font-weight="500">Entity-Based Storage</text>
+        
+  <rect x="635" y="360" width="290" height="35" rx="6" ry="6" 
+        fill="#FFFFFF" stroke="#D0D0D0" stroke-width="1.5"/>
+  <text x="780" y="383" font-family="Arial, Helvetica, sans-serif" font-size="16" 
+        text-anchor="middle" fill="#333333" font-weight="500">Long-Term Knowledge</text>
+  
+  <!-- User Interface - shifted right -->
+  <rect x="100" y="100" width="180" height="70" rx="8" ry="8" 
+        fill="#FFF9E6" stroke="#555555" stroke-width="2" filter="url(#shadow)"/>
+  <text x="190" y="143" font-family="Arial, Helvetica, sans-serif" font-size="19" 
+        font-weight="bold" text-anchor="middle" fill="#333333">User Interface</text>
+  
+  <!-- Orchestrator - shifted right -->
+  <rect x="100" y="230" width="180" height="70" rx="8" ry="8" 
+        fill="#FFF9E6" stroke="#555555" stroke-width="2" filter="url(#shadow)"/>
+  <text x="190" y="273" font-family="Arial, Helvetica, sans-serif" font-size="19" 
+        font-weight="bold" text-anchor="middle" fill="#333333">Orchestrator</text>
+  
+  <!-- Model Interface - shifted right -->
+  <rect x="100" y="360" width="180" height="70" rx="8" ry="8" 
+        fill="#FFF9E6" stroke="#555555" stroke-width="2" filter="url(#shadow)"/>
+  <text x="190" y="403" font-family="Arial, Helvetica, sans-serif" font-size="19" 
+        font-weight="bold" text-anchor="middle" fill="#333333">Model Interface</text>
+  
+  <!-- Context Router - moved upward -->
+  <rect x="370" y="120" width="140" height="70" rx="8" ry="8" 
+        fill="#FFFFFF" stroke="#555555" stroke-width="2" filter="url(#shadow)"/>
+  <text x="440" y="163" font-family="Arial, Helvetica, sans-serif" font-size="18" 
+        font-weight="bold" text-anchor="middle" fill="#333333">Context Router</text>
+  
+  <!-- Memory Retriever - moved upward and widened -->
+  <rect x="360" y="220" width="160" height="70" rx="8" ry="8" 
+        fill="#FFFFFF" stroke="#555555" stroke-width="2" filter="url(#shadow)"/>
+  <text x="440" y="263" font-family="Arial, Helvetica, sans-serif" font-size="18" 
+        font-weight="bold" text-anchor="middle" fill="#333333">Memory Retriever</text>
+  
+  <!-- Optimizer - moved upward -->
+  <rect x="370" y="320" width="140" height="70" rx="8" ry="8" 
+        fill="#FFFFFF" stroke="#555555" stroke-width="2" filter="url(#shadow)"/>
+  <text x="440" y="363" font-family="Arial, Helvetica, sans-serif" font-size="18" 
+        font-weight="bold" text-anchor="middle" fill="#333333">Optimizer</text>
+  
+  <!-- Arrows - adjusted for new positions -->
+  <!-- User Interface to Orchestrator -->
+  <path d="M190 170 L190 230" stroke="#444444" stroke-width="2.5" fill="none" 
+        marker-end="url(#arrowhead)"/>
+        
+  <!-- Orchestrator to Model Interface -->
+  <path d="M190 300 L190 360" stroke="#444444" stroke-width="2.5" fill="none" 
+        marker-end="url(#arrowhead)"/>
+        
+  <!-- Orchestrator to Context Router -->
+  <path d="M280 245 L370 155" stroke="#444444" stroke-width="2.5" fill="none" 
+        marker-end="url(#arrowhead)"/>
+        
+  <!-- Context Router to Memory Retriever -->
+  <path d="M440 190 L440 220" stroke="#444444" stroke-width="2.5" fill="none" 
+        marker-end="url(#arrowhead)"/>
+        
+  <!-- Memory Retriever to Short-term Memory -->
+  <path d="M520 240 L625 180" stroke="#444444" stroke-width="2.5" fill="none" 
+        marker-end="url(#arrowhead)"/>
+        
+  <!-- Memory Retriever to Long-term Memory -->
+  <path d="M520 270 L625 320" stroke="#444444" stroke-width="2.5" fill="none" 
+        marker-end="url(#arrowhead)"/>
+        
+  <!-- Memory Retriever to Optimizer -->
+  <path d="M440 290 L440 320" stroke="#444444" stroke-width="2.5" fill="none" 
+        marker-end="url(#arrowhead)"/>
+        
+  <!-- Optimizer to Orchestrator -->
+  <path d="M370 355 L280 265" stroke="#444444" stroke-width="2.5" fill="none" 
+        marker-end="url(#arrowhead)"/>
+  
+  <!-- Title - centered -->
+  <text x="660" y="465" font-family="Arial, Helvetica, sans-serif" font-size="24" 
+        font-weight="bold" text-anchor="middle" fill="#333333">Context Management System</text>
+</svg>

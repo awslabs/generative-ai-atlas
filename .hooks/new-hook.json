@@ -1,0 +1,12 @@
+{
+  "name": "My new hook",
+  "comment": "Hooks are experimental and could cause unexpected actions, looping, or crashes. Please use with caution.",
+  "when": {
+    "type": "fileEdited",
+    "pattern": "README.md"
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "Make README-emoji.md a translation of the read me only as emoji"
+  }
+}

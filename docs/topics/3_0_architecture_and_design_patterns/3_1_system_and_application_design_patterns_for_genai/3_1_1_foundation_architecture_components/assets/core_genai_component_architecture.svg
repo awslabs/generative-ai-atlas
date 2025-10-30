@@ -1,0 +1,72 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 460" width="880" height="460">
+  <defs>
+    <style>
+      .component {
+        fill: #FFF8F0;
+        stroke: #333333;
+        stroke-width: 2;
+        rx: 8;
+        ry: 8;
+        filter: drop-shadow(2px 3px 3px rgba(0,0,0,0.15));
+      }
+      .component-text {
+        font-family: Arial, sans-serif;
+        font-size: 18px;
+        font-weight: 600;
+        fill: #333333;
+        text-anchor: middle;
+        dominant-baseline: middle;
+      }
+      .flow-arrow {
+        stroke: #555555;
+        stroke-width: 2.5;
+        fill: none;
+        marker-end: url(#arrowhead);
+      }
+      .arrowhead {
+        fill: #555555;
+      }
+    </style>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="9" refY="3.5" orient="auto" class="arrowhead">
+      <polygon points="0 0, 10 3.5, 0 7"/>
+    </marker>
+  </defs>
+  
+  <rect width="100%" height="100%" fill="#ffffff"/>
+  
+  <!-- User Interface -->
+  <rect x="10" y="192" width="198" height="51" class="component"/>
+  <text x="109" y="217.5" class="component-text">Application Interface</text>
+  
+  <!-- Orchestrator -->
+  <rect x="358" y="190" width="186" height="51" class="component"/>
+  <text x="451" y="215.5" class="component-text">Application Engine</text>
+  
+  <!-- Model Interface -->
+  <rect x="678" y="10" width="186" height="51" class="component"/>
+  <text x="771" y="35.5" class="component-text">Model (Gateway)</text>
+  
+  <!-- Tool Interface -->
+  <rect x="678" y="191" width="186" height="51" class="component"/>
+  <text x="771" y="216.5" class="component-text">Tool (Gateway)</text>
+  
+  <!-- LLMOps Tool -->
+  <rect x="358" y="11" width="186" height="51" class="component"/>
+  <text x="451" y="36.5" class="component-text">Observability</text>
+  
+  <!-- Contextual Memory -->
+  <rect x="357" y="391" width="197" height="58" class="component"/>
+  <text x="455.5" y="420" class="component-text">Memory System</text>
+  
+  <!-- Knowledge Base -->
+  <rect x="675" y="395" width="186" height="51" class="component"/>
+  <text x="768" y="420.5" class="component-text">Knowledge Store</text>
+  
+  <!-- Arrows -->
+  <path d="M208 217 L358 216" class="flow-arrow"/>
+  <path d="M544 216.5 L678 216.5" class="flow-arrow"/>
+  <path d="M452 62 L452 190" class="flow-arrow"/>
+  <path d="M452 241 L452 391" class="flow-arrow"/>
+  <path d="M546 215 L612 60 L678 35" class="flow-arrow"/>
+  <path d="M546 217.5 L610 383 L675 420" class="flow-arrow"/>
+</svg>

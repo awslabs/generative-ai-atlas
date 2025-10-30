@@ -1,0 +1,392 @@
+# Copyright Amazon.com, Inc. or its affiliates. All Rights Reserved.
+# SPDX-License-Identifier: CC-BY-4.0
+site_name: Generative AI Atlas
+site_description: Generative AI Atlas provides builders with foundational knowledge and practical guidance through curated technical content, from core concepts to production-ready patterns. Whether you're beginning your GenAI journey or advancing existing implementations, find validated resources to build production-grade GenAI solutions.
+copyright: >
+    &copy; Amazon Web Services, Inc. or its affiliates. All rights reserved. ▪ 
+    <a href="#__consent">Change cookie settings</a> ▪  This site provides <a target="_blank" rel="noopener noreferrer" href="{{BASE_URL}}/llms.txt" title="A concise guide for LLMs to understand this site's key sections and purpose">LLMs.txt (summary)</a> and <a target="_blank" rel="noopener noreferrer" href="{{BASE_URL}}/llms-full.txt" title="Full text version with detailed page content for AI indexing and analysis">LLMs.txt (full)</a>.
+site_url: https://legendary-adventure-6l3e35e.pages.github.io # for testing in private
+
+theme:
+    name: material
+    custom_dir: overrides
+    #use_directory_urls: false
+    font: false
+    logo: assets/AWS_logo_RGB_1c_White.png
+    favicon: assets/favicon.ico
+    features:
+        - navigation.indexes
+        - navigation.path
+        - toc.follow
+        - navigation.top
+        - search.suggest
+        - search.highlight
+        - header.autohide
+        - navigation.footer
+        - announce.dismiss
+        - consent
+    palette:
+        # Palette toggle for automatic mode
+        - media: "(prefers-color-scheme)"
+          scheme: aws
+          toggle:
+              icon: material/weather-night
+              name: Switch to light mode
+
+        # Palette toggle for light mode
+        - media: "(prefers-color-scheme: light)"
+          scheme: aws
+          toggle:
+              icon: material/weather-sunny
+              name: Switch to dark mode
+
+        # Palette toggle for dark mode
+        - media: "(prefers-color-scheme: dark)"
+          scheme: aws-dark
+          toggle:
+              icon: material/brightness-4
+              name: Switch to system preference
+
+extra:
+    generator: false
+    polyfills:
+        - iframe-worker.js
+    consent:
+        title: Cookie consent
+        description: >-
+          We use cookies to recognize your repeated visits and preferences, as well
+          as to measure the effectiveness of our documentation and whether users
+          find what they're searching for. With your consent, you're helping us to
+          make our documentation better.
+        cookies:
+          analytics:
+            name: Analytics
+            description: >-
+              We use cookies to collect anonymous usage data. This helps us to
+              improve our documentation.
+            checked: true
+        actions:
+          - accept
+          - reject
+          - manage
+extra_css:
+    - stylesheets/extra.css
+plugins:
+    - offline
+    - search
+    - macros
+    - git-revision-date-localized
+    - privacy:
+          enabled: true
+          cache: true
+          cache_dir: .cache/plugins/privacy
+    - llmstxt:
+          enabled: true
+          full_output: llms-full.txt
+          sections:
+              Topic Documentation:
+                  - topics/*.md
+    - to-pdf:
+          enabled: true
+          verbose: false
+          debug_html: false
+          show_anchors: false
+          output_path: pdf/genai-atlas.pdf
+          author: Amazon Web Services, Inc.
+          cover_subtitle: Your trusted generative AI knowledge hub
+          copyright: "&copy; Amazon Web Services, Inc. or its affiliates. All rights reserved."
+          toc_level: 3
+          ordered_chapter_level: 3
+          exclude_pages:
+              - ^index.html$
+              - ^CONTRIBUTING.html$
+              - ^roadmap.html$
+hooks:
+    - hooks/config_hook.py
+
+exclude_docs: |
+    assets/banner.psd
+
+not_in_nav: |
+    topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_1_foundation_architecture_components/3_1_1_5_other_components/3_1_1_5_other_components.md
+
+nav:
+      - Home: "index.md"
+
+      - GenAI Fundamentals:
+            - Terminology: "topics/1_0_generative_ai_fundamentals/1_1_core_concepts_and_terminology/core_concepts_and_terminology.md"
+            - Business Value: "topics/1_0_generative_ai_fundamentals/1_2_business_value_and_use_cases/1_2_business_value_and_use_cases.md"
+            - Implementation Challenges: "topics/1_0_generative_ai_fundamentals/1_3_implementation_consideration_and_challenges/1_3_implementation_consideration_and_challenges.md"
+            - Responsible AI: "topics/1_0_generative_ai_fundamentals/1_4_responsible_ai_principles_and_considerations/1_4_responsible_ai_principles_and_considerations_placeholder.md"
+            - Current State of GenAI: "topics/1_0_generative_ai_fundamentals/1_5_evolution_and_current_state_of_generative_ai/1_5_evolution_and_current_state_of_generative_ai_placeholder.md"
+
+      - Core Concepts:
+            - "topics/2_0_technical_foundations_and_patterns/index.md"
+            - Key Primitives:
+                  - "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/index.md"
+                  - The Input Interface - Prompts: "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_1_prompt/2_1_1_prompt.md"
+                  - Model Outputs: "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_2_model_outputs/2_1_2_model_outputs.md"
+                  - Context Windows: "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_3_context_windows/2_1_3_context_windows.md"
+                  - Tokens: "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_4_tokens/2_1_4_tokens.md"
+                  - Embeddings: "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_5_embeddings/2_1_5_embeddings.md"
+                  - Vector Databases: "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_6_vector_databases/2_1_6_vector_databases.md"
+                  - RAG: "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_7_rag/2_1_7_rag.md"
+                  - Fine-tuning: "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_8_fine_tuning/2_1_8_fine_tuning.md"
+                  - Agents: "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_9_agents/2_1_9_agents.md"
+                  - Integration Patterns: "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_10_genai_integration_patterns/2_1_10_genai_integration_patterns.md"
+                  - Model Context Procotol (MCP): "topics/2_0_technical_foundations_and_patterns/2_1_key_primitives/2_1_11_mcp/mcp.md"
+
+            - Model Types: "topics/2_0_technical_foundations_and_patterns/2_2_types_of_generative_ai_models_and_capabilities/2_2_types_of_generative_ai_models_and_capabilities.md"
+
+            - Data Engineering:
+                  - "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_1_data_engineering/index.md"
+                  - Foundation: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_1_data_engineering/2_3_1-1_data_engineering_foundation/data_engineering_concepts.md"
+                  - Core Data Quality: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_1_data_engineering/2_3_1-2_core_data_engineering_quality_concepts/core_concepts.md"
+                  - CookBooks: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_1_data_engineering/2_3_1-3_core_data_engineering_cookboks/core_pipeline.md"
+
+            - Prompt Engineering:
+                  - "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_2_prompt_engineering/index.md"
+                  - Key Terminology: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_2_prompt_engineering/2_3_2-1_key_terminology/key_terminology.md"
+                  - Tokens and Embeddings: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_2_prompt_engineering/2_3_2-2_tokens_embeddings/tokens_embeddings.md"
+                  - Core Components: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_2_prompt_engineering/2_3_2-3_core_components/core_components.md"
+                  - Context and Memory: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_2_prompt_engineering/2_3_2-4_context_memory/context_memory.md"
+                  - Temperature and Sampling: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_2_prompt_engineering/2_3_2-5_temperature_sampling/temperature_sampling.md"
+                  - Input/Output Relationships: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_2_prompt_engineering/2_3_2-6_input_output/input_output.md"
+                  - Prompt Composition: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_2_prompt_engineering/2_3_2-7_composition/composition.md"
+                  - Technical Limitations: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_2_prompt_engineering/2_3_2-8_limitations/limitations.md"
+
+            - RAG:
+                  - "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_3_RAG(retrieval Augmented Generation)/index.md"
+                  - Ingest Pipelines: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_3_RAG(retrieval Augmented Generation)/2_3_3-1-ingestion_pipelines/2_3_3-1-ingestion_pipelines.md"
+                  - Retrieval Pipelines: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_3_RAG(retrieval Augmented Generation)/2_3_3-2-Retrieval_pipelines/2.3.3.2 Retrieval Pipelines.md"
+                  - Generation Pipelines: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_3_RAG(retrieval Augmented Generation)/2_3_3-3-Generation_pipelines/2.3.3.3 Generation Pipelines.md"
+                  - Advanced RAG Patterns: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_3_RAG(retrieval Augmented Generation)/2_3_3-4-Advanced_RAG_patterns/2.3.3.4 Advanced RAG Patterns.md"
+                  - Performance Tuning: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_3_RAG(retrieval Augmented Generation)/2_3_3-5-Performance_tuning_of_RAG_systems/2.3.3.5 Performance Tuning of RAG Systems.md"
+                  - Pre-retrieval Techniques: "topics/3_0_architecture_and_design_patterns/3_3_retrieval_augmented_generation/3_3_1_pre-retrieval_techniques/3_3_1_pre-retrieval_techniques.md"
+                  - Retrieval Optimization: "topics/3_0_architecture_and_design_patterns/3_3_retrieval_augmented_generation/3_3_2_retrieval_optimization/3_3_2_retrieval_optimization.md"
+                  - Post-retrieval Optimization: "topics/3_0_architecture_and_design_patterns/3_3_retrieval_augmented_generation/3_3_3_post-retrieval_optimization/3_3_3_post-retrieval_optimization.md"
+                  - Structured RAG: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_3_RAG(retrieval Augmented Generation)/2_3_3-6-Structured RAG/2_3_3-6-Structured RAG.md"
+                  - Multimodal RAG: "topics/3_0_architecture_and_design_patterns/3_3_retrieval_augmented_generation/3_3_4_multi_modal_rag/3_3_4_multi_modal_rag.md"
+
+            - Fine-tuning:
+                  - "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_4_fine-tuning/index.md"
+                  - Overview: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_4_fine-tuning/fine_tuning.md"
+                  - Full Fine-tuning: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_4_fine-tuning/2_3_4-1_full_fine-tuning/full_fine-tuning.md"
+                  - PEFT:
+                        - Overview: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_4_fine-tuning/2_3_4-2_PEFT(parameter efficient fine-tuning)/peft.md"
+                        - LoRA: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_4_fine-tuning/2_3_4-2_PEFT(parameter efficient fine-tuning)/2_3_4_2_1LoRA/lora.md"
+                        - QLoRA: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_4_fine-tuning/2_3_4-2_PEFT(parameter efficient fine-tuning)/2_3_4_2_2QLoRA/qlora.md"
+                  - Preference Alignment:
+                        - Overview: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_4_fine-tuning/2_3_4-3_Preference Alignment/preference_alignment.md"
+                        - RLHF: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_4_fine-tuning/2_3_4-3_Preference Alignment/2_3_4_3_1_reinforcement_learning_from_human_feedback(RLHF)/rlhf.md"
+                        - DPO: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_4_fine-tuning/2_3_4-3_Preference Alignment/2_3_4_3_2_direct_preference_optimization(DPO)/dpo.md"
+                        - GRPO: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_4_fine-tuning/2_3_4-3_Preference Alignment/2_3_4_3_3_group_relative_policy_optimization/gpo.md"
+                  - Distillation: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_4_fine-tuning/2_3_4-4_Distillation/distillation.md"
+
+            - Inference:
+                  - "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_5_inference/index.md"
+                  - Online Inference: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_5_inference/2_3_5-1_online_inference/online_inference.md"
+                  - Async Inference: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_5_inference/2_3_5-2_async_inference/async_inference.md"
+                  - Model Serving: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_5_inference/2_3_5-3_model_serving/model_serving.md"
+
+            - Orchestration:
+                  - "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_6_orchestration_patterns/index.md"
+                  - Fan-out/Fan-in: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_6_orchestration_patterns/1_fan-out-fan-in/fan-out-fan-in.md"
+                  - Prompt Chaining: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_6_orchestration_patterns/2_prompt-chaining/prompt-chaining.md"
+                  - Human-in-the-loop: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_6_orchestration_patterns/3_human-in-the-loop/human-in-the-loop.md"
+
+            - Agents:
+                  - "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_7_agents_and_autonomous_systems/index.md"
+                  - Getting Started: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_7_agents_and_autonomous_systems/2_3_7-1_getting_started/what_is_an_agentic_system.md"
+                  - Workflows: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_7_agents_and_autonomous_systems/2_3_7-3_workflow_agents/design_patterns.md"
+                  - Autonomous Agents: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_7_agents_and_autonomous_systems/2_3_7-4_autonomous_agents/understanding_autonomous_agents.md"
+                  - Multi-Agent Applications: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_7_agents_and_autonomous_systems/2_3_7-5_multi_agent_systems/multi_agent_architectures.md"
+                  - Development and Deployment:
+                        - Testing and Evaluation: "topics/2_0_technical_foundations_and_patterns/2_3_core_archtectural_concepts/2_3_7_agents_and_autonomous_systems/2_3_7-6_reference_architectures/testing_and_evaluation.md"
+
+            - Hallucination Management: "topics/2_0_technical_foundations_and_patterns/2_5_managing_hallucinations_and_guardrails/hallucinations_and_guardrails.md"
+
+            - Evaluation:
+                  - "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/index.md"
+                  - Introduction: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/introduction_to_generative_AI_evaluations.md"
+                  - Model Evaluation: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_1_model_evaluation/2_6_1_model_evaluation.md"
+                  - Prompt Evaluation: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_2_prompt_evaluation/2_6_2_prompt_evaluation.md"
+                  - Evaluation Techniques:
+                        - Overview: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_3_evaluation_technique/2_6_3_evaluation_techniques.md"
+                        - LLM as a Judge: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_3_evaluation_technique/2_6_3_1_llm_as_a_judge/2_6_3_1_llm_as_a_judge.md"
+                        - Rubric Based Evaluation: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_3_evaluation_technique/2_6_3_2_rubric_based_evaluation/2_6_3_2_rubric_based_evaluation.md"
+                        - Traditional Metrics: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_3_evaluation_technique/2_6_3_3_traditional_evaluation_metrics/2_6_3_3_traditional_evaluation_metrics.md"
+                  - Domain Specific Evaluation:
+                        - Overview: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_4_domain_specific_evaluations/2_6_4_domain_specific_evalutions.md"
+                        - RAG Systems: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_4_domain_specific_evaluations/2_6_4_1_evaluating_rag_systems/2_6_4_1_evaluating_rag_systems.md"
+                        - Document Processing: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_4_domain_specific_evaluations/2_6_4_2_evaluating_intelligent_document_processing/2_6_4_2_evaluating_intelligent_document_processing.md"
+                        - Chatbot Systems: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_4_domain_specific_evaluations/2_6_4_3_evaluating_chat/2_6_4_3_evaluating_chat.md"
+                        - Summarization Systems: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_4_domain_specific_evaluations/2_6_4_4_evaluating_summarization/2_6_4_4_evaluating_summarization.md"
+                        - Agentic Workflow: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_4_domain_specific_evaluations/2_6_4_5_evaluating_agentic_workflow/2_6_4_5_evaluating_agentic_workflow.md"
+                        - Text2SQL Systems: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_4_domain_specific_evaluations/2_6_4_6_evaluating_text2sql/2_6_4_6_evaluating_text2sql.md"
+                        - Video Understanding: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_4_domain_specific_evaluations/2_6_4_7_evaluating_video_understanding/2_6_4_7_evaluating_video_understanding.md"
+                  - Evaluation at Scale: "topics/2_0_technical_foundations_and_patterns/2_6_model_evaluation_and_selection_criteria/2_6_5_evaluation_at_scale/2_6_5_evaluation_at_scale.md"
+
+            - Output Customization: "topics/2_0_technical_foundations_and_patterns/2_7_output_customization_taxonomy/customization_taxonomy.md"
+
+      - Architecture Patterns:
+            - "topics/3_0_architecture_and_design_patterns/index.md"
+            - System Design:
+                  - "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/index.md"
+                  - Architecture Components:
+                        - "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_1_foundation_architecture_components/index.md"
+                        - Application Interface: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_1_foundation_architecture_components/3_1_1_1_application_interface/index.md"
+                        - Application Engine: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_1_foundation_architecture_components/3_1_1_2_application_engine/index.md"
+                        - Memory System: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_1_foundation_architecture_components/3_1_1_3_memory_system/index.md"
+                        - LLM Gateway: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_1_foundation_architecture_components/3_1_1_4_llm_gateway/index.md"
+                        - Knowledge Base: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_1_foundation_architecture_components/3_1_1_5_knowledge_base/index.md"
+                        - Tool Gateway: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_1_foundation_architecture_components/3_1_1_6_tool_gateway/index.md"
+                        - Application Observability: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_1_foundation_architecture_components/3_1_1_7_application_observability/index.md"
+                        - Additional Components:
+                              - Human-in-the-Loop: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_1_foundation_architecture_components/3_1_1_8_additional_components/3_1_1_8_1_human_in_the_loop/3_1_1_8_1_human_in_the_loop.md"
+                  - Architecture Design Patterns:
+                        - "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/index.md"
+                        - Chatbot Architecture: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/3_1_2_1_chatbot_architecture/3_1_2_1_chatbot_architecture.md"
+                        - Intelligent Document Processing:
+                              - "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/3_1_2_2_intelligent_document_processing/index.md"
+                              - Document Ingestion: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/3_1_2_2_intelligent_document_processing/3_1_2_2_1_document_ingestion/document_ingestion.md"
+                              - Information Extraction: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/3_1_2_2_intelligent_document_processing/3_1_2_2_2_information_extraction/information_extraction.md"
+                        - Multimodal AI System:
+                              - "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/3_1_2_3_multimodal_ai_system/index.md"
+                              - Multimodal Understanding: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/3_1_2_3_multimodal_ai_system/3_1_2_3_1_multimodal_understanding/multimodal_understanding.md"
+                              - Image Generation: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/3_1_2_3_multimodal_ai_system/3_1_2_3_2_image_generation/image_generation_doc.md"
+                              - Video Generation: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/3_1_2_3_multimodal_ai_system/3_1_2_3_3_video_generation/video_generation_doc.md"
+                        - NL-based Data Insight:
+                              - "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/3_1_2_4_data_insight_architecture/index.md"
+                              - Text-to-SQL Application: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/3_1_2_4_data_insight_architecture/3_1_2_4_1_text_to_sql_application/3_1_2_4_1_text_to_sql_application.md"
+                              - Generative BI: "topics/3_0_architecture_and_design_patterns/3_1_system_and_application_design_patterns_for_genai/3_1_2_architecture_patterns_by_application_type/3_1_2_4_data_insight_architecture/3_1_2_4_2_generative_bi/3_1_2_4_2_generative_bi.md"
+
+            - Scalability:
+                  - "topics/3_0_architecture_and_design_patterns/3_4_scalability_performance/index.md"
+                  - Application & Runtime Optimization:
+                        - Application Performance:
+                              - T-Shirt Sizing: "topics/3_0_architecture_and_design_patterns/3_4_scalability_performance/3_4_1_application_runtime_optimization/3_4_1_1_application_performance/3_4_1_1_1_t_shirt_sizing.md"
+                              - Performance Monitoring: "topics/3_0_architecture_and_design_patterns/3_4_scalability_performance/3_4_1_application_runtime_optimization/3_4_1_1_application_performance/3_4_1_1_2_application_performance_monitoring.md"
+                        - Runtime Environment: "topics/3_0_architecture_and_design_patterns/3_4_scalability_performance/3_4_1_application_runtime_optimization/3_4_1_2_runtime_environment_scalability/3_4_1_2_runtime_environment_scalability.md"
+                  - Model Inference Optimization:
+                        - Overview: "topics/3_0_architecture_and_design_patterns/3_4_scalability_performance/3_4_2_model_inference_optimization/index.md"
+                        - Model Selection: "topics/3_0_architecture_and_design_patterns/3_4_scalability_performance/3_4_2_model_inference_optimization/3_4_2_1_model_selection.md"
+                        - Model Quantization: "topics/3_0_architecture_and_design_patterns/3_4_scalability_performance/3_4_2_model_inference_optimization/3_4_2_2_model_quantization.md"
+                        - Model Parallelization: "topics/3_0_architecture_and_design_patterns/3_4_scalability_performance/3_4_2_model_inference_optimization/3_4_2_3_model_parallelization.md"
+                        - Model Distillation: "topics/3_0_architecture_and_design_patterns/3_4_scalability_performance/3_4_2_model_inference_optimization/3_4_2_4_model_distillation.md"
+                        - Model Deployment: "topics/3_0_architecture_and_design_patterns/3_4_scalability_performance/3_4_2_model_inference_optimization/3_4_2_5_model_deployment.md"
+                  - Other Optimizations: "topics/3_0_architecture_and_design_patterns/3_4_scalability_performance/3_4_3_other_optimizations/3_4_3_1_other_optimizations.md"
+
+            - Security & Privacy:
+                  - Prompt Injection & Jailbreak: "topics/3_0_architecture_and_design_patterns/3_5_security_privacy/3_5_1_security_threats_management/3_5_1-1_prompt_injection_jailbreak/prompt_injection_jailbreak.md"
+                  - Content Safety & Filtering: "topics/3_0_architecture_and_design_patterns/3_5_security_privacy/3_5_1_security_threats_management/3_5_1-2_content_safety_output_filtering/content_safety_output_filtering.md"
+                  - Authentication & Authorization: "topics/3_0_architecture_and_design_patterns/3_5_security_privacy/3_5_2_access_control_frameworks/3_5_2-1_authentication_authorization/authentication_authorization.md"
+                  - Multi-tenant Security: "topics/3_0_architecture_and_design_patterns/3_5_security_privacy/3_5_2_access_control_frameworks/3_5_2-2_multi_tenant_security/multi_tenant_security.md"
+                  - Compliance and Data Protection: "topics/3_0_architecture_and_design_patterns/3_5_security_privacy/3_5_3_compliance_data_protection/compliance_data_protection.md"
+                  - Regulatory Governance: "topics/3_0_architecture_and_design_patterns/3_5_security_privacy/3_5_3_compliance_data_protection/3_5_3-2_regulatory_governance/regulatory_governance.md"
+
+            - Cost Optimization:
+                  - "topics/3_0_architecture_and_design_patterns/3_6_cost_optimization/index.md"
+                  - Business Strategy and Value: "topics/3_0_architecture_and_design_patterns/3_6_cost_optimization/3_6_1_business_strategy_and_value_assessment/readme.md"
+                  - Cost Estimation: "topics/3_0_architecture_and_design_patterns/3_6_cost_optimization/3_6_2_cost_estimation/readme.md"
+                  - Optimization Strategy: "topics/3_0_architecture_and_design_patterns/3_6_cost_optimization/3_6_3_cost_optimization_strategy/readme.md"
+                  - Tracking and Monitoring: "topics/3_0_architecture_and_design_patterns/3_6_cost_optimization/3_6_4_cost_tracking_and_monitoring/readme.md"
+
+            - Resilience: "topics/3_0_architecture_and_design_patterns/3_7_resilience_high_availability/resilience.md"
+
+            - AI Ops:
+                  - "topics/3_0_architecture_and_design_patterns/3_9_AIOps/index.md"
+                  - Building GenAI Applications: "topics/3_0_architecture_and_design_patterns/3_9_AIOps/aiops_applicationbuilding.md"
+                  - Creating/Fine-tuning Models: "topics/3_0_architecture_and_design_patterns/3_9_AIOps/aiops_modeltuning.md"
+                  - Deploying GenAI Applications: "topics/3_0_architecture_and_design_patterns/3_9_AIOps/aiops_deployment.md"
+                  - Data Management: "topics/3_0_architecture_and_design_patterns/3_9_AIOps/aiops_datamanagement.md"
+
+      - Production Framework:
+            - "topics/4_0_systematic_path_to_production_framework/index.md"
+            - Business Strategy: "topics/4_0_systematic_path_to_production_framework/4_1_business_strategy_value_creation/index.md"
+            - Data Foundation: "topics/4_0_systematic_path_to_production_framework/4_2_data_model_foundation/index.md"
+            - Training: "topics/4_0_systematic_path_to_production_framework/4_3_training_upskilling/index.md"
+            - Governance: "topics/4_0_systematic_path_to_production_framework/4_4_governance/index.md"
+            - Responsible AI: "topics/4_0_systematic_path_to_production_framework/4_5_responsible_ai/index.md"
+            - SDLC: "topics/4_0_systematic_path_to_production_framework/4_6_sdlc/index.md"
+            - Operations: "topics/4_0_systematic_path_to_production_framework/4_7_operations/index.md"
+
+      - Adoption Framework:
+            - "topics/5_0_organization_adoption_framework/index.md"
+            - Vision & Strategy:
+                  - Organizational AI Vision: "topics/5_0_organization_adoption_framework/5_1_vision_and_strategy/5_1_1_organizational_ai_vision.md"
+                  - Value Identification: "topics/5_0_organization_adoption_framework/5_1_vision_and_strategy/5_1_2_value_identification_prioritization.md"
+                  - ROI Framework: "topics/5_0_organization_adoption_framework/5_1_vision_and_strategy/5_1_3_roi_framework.md"
+            - AI Centers of Excellence:
+                  - AI CoE: "topics/5_0_organization_adoption_framework/5_2_governance_and_organization/5_2_1_ai_center_of_excellence.md"
+                  - Organizational Design: "topics/5_0_organization_adoption_framework/5_2_governance_and_organization/5_2_2_organizational_design_team_structure.md"
+                  - Risk and Compliance: "topics/5_0_organization_adoption_framework/5_2_governance_and_organization/5_2_3_risk_and_compliance_mngmt.md"
+            - Implementation:
+                  - Change Management: "topics/5_0_organization_adoption_framework/5_3_implementation_and_execution/5_3_2_change_management_and_adoption.md"
+
+      - Examples & References:
+            - Industry Deployments:
+                  - "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/index.md"
+                  - Financial Services:
+                        - Personalized Customer Onboarding: "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_2_fis/personalized_customer_onboarding.md"
+                        - Anti-Money Laundering (AML) Investigation: "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_2_fis/aml_investigation.md"
+                  - Retail:
+                        - Smart Product Onboarding:  "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_3_retail/smart_product_onboarding.md"
+                  - Healthcare:
+                        - Smart Prescrition Reader: "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_4_healthcare/smart_prescription_reader.md"
+                  - Cross-industry:
+                        - Intelligent Document Processing:  "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_5_cross_industry/idp_with_genai.md"
+                        - Customer Service Assistant:  "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_5_cross_industry/customer_service_assistant.md"
+                        - Dynamic Document Management with GraphRAG:  "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_5_cross_industry/dynamic_document_management.md"
+                        - Automated Contract Compliance Analysis:  "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_5_cross_industry/automated_contract_analysis.md"
+                        - Multi-Page Document Analysis: "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_5_cross_industry/multipage_document_analysis.md"
+                        - RFP Answer Generation: "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_5_cross_industry/rfp.md"
+                        - Next-Generation Marketing Campaign: "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_5_cross_industry/marketing_campaign.md"
+                        - Self-Service Analytics Platform: "topics/6_0_example_application_and_reference_code/6_1_reference_applications_by_industry/6_1_5_cross_industry/self_service_analytics.md"
+
+            - Case Studies:
+                  - "topics/6_0_example_application_and_reference_code/6_3_case_studies_and_success_stories/index.md"
+                  - Financial Services: "topics/6_0_example_application_and_reference_code/6_3_case_studies_and_success_stories/6_3_2_fis/fis.md"
+                  - Manufacturing: "topics/6_0_example_application_and_reference_code/6_3_case_studies_and_success_stories/6_3_4_manufacturing/manufacturing.md"
+
+      - Resources:
+            - "topics/7_0_resource_and_tools/index.md"
+            - AWS Services: "topics/7_0_resource_and_tools/7_1_AWS_Services/aws_services.md"
+            - Tools & Libraries:
+                  - AI Agents: "topics/7_0_resource_and_tools/7_2_Popular_tools_libs_and_frameworks/7_2_1_Agent/7_2_1_Agent_tools_libs_and_frameworks.md"
+                  - Model Development: "topics/7_0_resource_and_tools/7_2_Popular_tools_libs_and_frameworks/7_2_2_Model_Development/7_2_2_Model_tools_libs_and_frameworks.md"
+            - Community Support: "topics/7_0_resource_and_tools/7_4_Community_Forums_Learning_Resources_and_Support/community_forums_learning_resources_and_support.md"
+
+      - ISV Focus:
+            - "topics/8_0_isv_focus/index.md"
+            - Selling with AWS: "topics/8_0_isv_focus/8_2_sell_with_aws/sell_with_aws.md"
+            - COGS & ROI: "topics/8_0_isv_focus/8_3_cogs_and_roi/cogs_and_roi.md"
+            - Multi-tenancy: "topics/8_0_isv_focus/8_4_secure_multitenancy/secure_multitenancy.md"
+            - IP Protection: "topics/8_0_isv_focus/8_5_protecting_intellectual_property/protecting_intellectual_property.md"
+            - Control & Data Planes: "topics/8_0_isv_focus/8_6_control_and_data_plane_considerations/control_and_data_plane_considerations.md"
+
+      - Contributing: contributing.md
+      - Roadmap: roadmap.md
+
+markdown_extensions:
+    - admonition
+    - def_list
+    - pymdownx.caret
+    - pymdownx.mark
+    - pymdownx.tilde
+    - pymdownx.tasklist:
+          custom_checkbox: true
+    - toc:
+          permalink: true
+          title: "On this page"
+    - attr_list
+    - md_in_html
+
+    - pymdownx.superfences:
+          custom_fences:
+              - name: mermaid
+                class: mermaid
+                format: !!python/name:pymdownx.superfences.fence_code_format
+    - pymdownx.emoji:
+          emoji_index: !!python/name:material.extensions.emoji.twemoji
+          emoji_generator: !!python/name:material.extensions.emoji.to_svg

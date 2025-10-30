@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+
+{% block extrahead %}
+  <!-- Content Security Policy -->
+  <meta 
+    http-equiv="Content-Security-Policy" 
+    content="font-src 'self' data: assets/fonts/ assets/external/fonts.gstatic.com assets/external/fonts.googleapis.com assets/external/fonts.gstatic.com/s/roboto/v47; 
+             style-src 'self' 'unsafe-inline' data: assets/fonts/ assets/external/fonts.gstatic.com assets/external/fonts.googleapis.com assets/external/fonts.gstatic.com/s/roboto/v47; 
+             connect-src 'self' data: *.amazonaws.com cognito-identity.us-west-2.amazonaws.com; 
+             script-src 'self' 'unsafe-inline' 'unsafe-eval' data:;
+             img-src 'self' data:;"
+  >
+  <!-- Additional Security Headers -->
+  <meta http-equiv="X-Frame-Options" content="DENY">
+  <meta http-equiv="X-Content-Type-Options" content="nosniff">
+  <meta http-equiv="Strict-Transport-Security" content="max-age=47304000; includeSubDomains">
+  <meta http-equiv="Cache-Control" content="no-store, no-cache">
+{% endblock %}
+
+{% block scripts %}
+  {{ super() }}
+  <script src="{{ base_url }}/js/aws-amplify.min.js"></script>
+  <script src="{{ base_url }}/js/extra.js"></script>
+{% endblock %}

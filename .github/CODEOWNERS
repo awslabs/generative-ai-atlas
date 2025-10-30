@@ -1,0 +1,10 @@
+# [CODEOWNERS](https://docs.github.com/en/repositories/managing-your-repositorys-settings-and-features/customizing-your-repository/about-code-owners#about-code-owners)
+
+## Default owners for everything in the repo
+* @awslabs/generative-ai-atlas-admins
+
+# Docs directory maintainers
+/docs/ @awslabs/generative-ai-atlas-admins @awslabs/generative-ai-atlas-maintainers
+
+# Overrides directory maintainers
+/overrides/ @awslabs/generative-ai-atlas-admins @awslabs/generative-ai-atlas-maintainers
