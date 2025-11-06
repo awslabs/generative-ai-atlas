@@ -6,7 +6,7 @@ copyright: >
     &copy; Amazon Web Services, Inc. or its affiliates. All rights reserved. ▪ 
     <a href="#__consent">Change cookie settings</a> ▪  This site provides <a target="_blank" rel="noopener noreferrer" href="{{BASE_URL}}/llms.txt" title="A concise guide for LLMs to understand this site's key sections and purpose">LLMs.txt (summary)</a> and <a target="_blank" rel="noopener noreferrer" href="{{BASE_URL}}/llms-full.txt" title="Full text version with detailed page content for AI indexing and analysis">LLMs.txt (full)</a>.
 site_url: https://awslabs.github.io/generative-ai-atlas
-repo_url: https://github.com/awslabs/generative-ai-atlas
+
 theme:
     name: material
     custom_dir: overrides
