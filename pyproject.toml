@@ -58,7 +58,7 @@ dependencies = [
     "tinyhtml5==2.0.0",
     "tomli==2.2.1",
     "typing-extensions==4.12.2",
-    "urllib3==2.5.0",
+    "urllib3==2.6.0",
     "watchdog==6.0.0",
     "weasyprint==52.5",
     "webencodings==0.5.1",
