@@ -779,3 +779,29 @@
 [data-md-color-scheme] .md-sidebar.md-sidebar--primary .md-sidebar__scrollwrap::-webkit-scrollbar-thumb:active {
   background-color: #e8e8e8 !important;
 }
+
+.md-typeset__table table { max-width: calc(100vw - 2rem) !important; }
+
+/* ===== RESPONSIVE CONTENT ===== */
+/* Ensure all content respects container bounds on mobile */
+.md-typeset img {
+  max-width: 100%;
+  height: auto;
+}
+
+.md-typeset pre {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.md-typeset code {
+  word-break: break-word;
+}
+
+/* Mobile-specific adjustments */
+@media screen and (max-width: 480px) {
+  .md-content__inner {
+    max-width: calc(100vw - 2rem);
+    padding: 0 1rem;
+  }
+}

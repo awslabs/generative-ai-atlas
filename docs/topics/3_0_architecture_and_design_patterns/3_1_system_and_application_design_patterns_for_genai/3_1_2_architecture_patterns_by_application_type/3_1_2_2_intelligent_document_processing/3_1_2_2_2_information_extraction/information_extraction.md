@@ -9,7 +9,7 @@
 
 ### Suggested Pre-Reading:
 
-[Previous page: Document Ingestion](../3_1_2_2_1_document_ingestion/document_ingestion.md){:target="_blank" rel="noopener noreferrer"}
+[Document Ingestion](../3_1_2_2_1_document_ingestion/document_ingestion.md){:target="_blank" rel="noopener noreferrer"}
 
 ## TL;DR:
 

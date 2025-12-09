@@ -66,8 +66,8 @@ When fine tuning your models or self-training your models, you should ensure tha
 
 **Author** 
 
-* Ruskin Dantra - Senior Solutions Architect []
+* Ruskin Dantra - Senior Solutions Architect
 
 **Reviewers**
 
-* Raj Bagwe - Senior Solutions Architect []
+* Raj Bagwe - Senior Solutions Architect

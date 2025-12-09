@@ -135,26 +135,12 @@ Your response should strictly follow this format:
 **Lexical Overlap  Metrics:**
 Traditional lexical overlap metrics like BLEU and ROUGE offer fast, interpretable evaluations but struggle to capture the semantic flexibility of valid responses in multimodal contexts. More recent approaches like BERTScore and Answer Equivalence (BEM) aim to align closer with human judgment by focusing on meaning, paraphrase tolerance, and contextual relevance. The table below compares these metrics in the context of video-based LLM evaluation, highlighting their strengths, limitations, and best-fit
 
-|Metric	|Description	|Pros	|Cons	|When to use	|
-|---	|---	|---	|---	|---	|
-|**BLEU**	|Measures *n*-gram precision (1–4) between generated and reference responses	|- Fast and well-known
-- Penalizes irrelevant or short outputs	|- Rigid on phrasing
-- Ignores semantics
-- Fails with diverse valid answers	|The output is short, well-bounded (e.g., object names, actions) with predictable phrasing	|
-|**BERTScore**	|Measures semantic similarity using contextual embeddings between output and reference	|- Captures paraphrasing
-- Good for long, descriptive answers
-- Language-agnostic	|- Doesn’t penalize hallucinations
-- May over-credit semantically similar but incorrect info	|The model generates open-ended descriptions or insights that may vary in wording	|
-|**BEM (Answer Equivalence)**	|Trained BERT-based model predicts if the answer is correct given question & reference	|- Sensitive to question relevance
-- Credits semantically correct answers
-- Human-aligned	|- Requires labeled data
-- More complex setup
-- Task-specific	|You care about semantic correctness and completeness of generated answers from video input	|
-|**ROUGE**	|Measures recall of overlapping *n*-grams or sequences between output and reference	|- Captures key idea recall
-- Tolerant to verbosity
-- Common in summarization	|- Lexical-only
-- Doesn’t reward paraphrasing
-- Inflated scores for verbose outputs	|You want to verify if the model captured most relevant content from a long video	|
+| Metric | Description | Pros | Cons | When to use |
+|--------|-------------|------|------|-------------|
+| **BLEU** | Measures *n*-gram precision (1–4) between generated and reference responses | - Fast and well-known<br>- Penalizes irrelevant or short outputs | - Rigid on phrasing<br>- Ignores semantics<br>- Fails with diverse valid answers | The output is short, well-bounded (e.g., object names, actions) with predictable phrasing |
+| **BERTScore** | Measures semantic similarity using contextual embeddings between output and reference | - Captures paraphrasing<br>- Good for long, descriptive answers<br>- Language-agnostic | - Doesn't penalize hallucinations<br>- May over-credit semantically similar but incorrect info | The model generates open-ended descriptions or insights that may vary in wording |
+| **BEM (Answer Equivalence)** | Trained BERT-based model predicts if the answer is correct given question & reference | - Sensitive to question relevance<br>- Credits semantically correct answers<br>- Human-aligned | - Requires labeled data<br>- More complex setup<br>- Task-specific | You care about semantic correctness and completeness of generated answers from video input |
+| **ROUGE** | Measures recall of overlapping *n*-grams or sequences between output and reference | - Captures key idea recall<br>- Tolerant to verbosity<br>- Common in summarization | - Lexical-only<br>- Doesn't reward paraphrasing<br>- Inflated scores for verbose outputs | You want to verify if the model captured most relevant content from a long video |
 
 
 
@@ -196,4 +182,4 @@ Traditional lexical overlap metrics like BLEU and ROUGE offer fast, interpretabl
 
 **Authors**
 
-* Baishali Chaudhury - Applied Scientist II 
+* Baishali Chaudhury - Applied Scientist II

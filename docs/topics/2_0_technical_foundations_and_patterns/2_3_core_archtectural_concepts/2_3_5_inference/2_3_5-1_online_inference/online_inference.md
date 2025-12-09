@@ -59,15 +59,19 @@ The application might use a quantized model to reduce memory requirements, utili
 
 ## Further Reading
 
-* Topic 3.4.2: Model inference optimization
+* [Model inference optimization](../../../../3_0_architecture_and_design_patterns/3_4_scalability_performance/3_4_2_model_inference_optimization/index.md)
 
 ## Contributors
 
 **Authors:**
- - Guillermo Tantachuco - Principal AI Technologist 
- - Markus Bestehorn - Tech Lead Generative AI EMEA 
 
-**Primary Reviewer:** Dmitry Soldatkin - Sr. ML Specialist SA 
+- Guillermo Tantachuco - Principal AI Technologist 
+
+- Markus Bestehorn - Tech Lead Generative AI EMEA 
+
+**Primary Reviewer:** 
+
+- Dmitry Soldatkin - Sr. ML Specialist SA 
 
 **Additional Reviewers:**
 

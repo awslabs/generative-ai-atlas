@@ -17,14 +17,7 @@ As large language models (LLMs) become more common in business applications, the
 
 Business systems need predictable results that work reliably in real-world situations. When companies use LLMs for important tasks like analyzing financial data, helping with healthcare decisions, or processing legal documents, any unexpected changes in the outputs can cause serious problems. Companies investing large amounts of money in AI technology need systems that behave predictably and produce appropriate responses, despite the inherently non-deterministic nature of LLMs.
 
-<<<<<<< HEAD
 Several issues should be considered when seeking consistent results from LLMs. First, the companies that create these models frequently update them, which can change how they respond to the same prompts. Second, settings like temperature and sampling parameters control how creative or focused the model's responses will be, and these need careful adjustment for each business use. Third, limits on how much information can be processed at once force engineers to make careful decisions about what to include in prompts. Finally, since many commercial models are black box, careful testing methods have to be developed.
-=======
-Several issues should be considered when seeking consistent results from LLMs. First, the companies that create these models frequently update them, which can change how they respond to the same prompts.
-Second, settings like temperature and sampling parameters control how creative or focused the model's responses will be, and these need careful adjustment for each business use.
-Third, limits on how much information can be processed at once forces engineers to make careful decisions about what to include in prompts.
-Finally, since many commercial models are considered to be a black box, i.e., the internal process to deliver outputs are not observable, careful testing methods have to be developed.
->>>>>>> main
 
 ## Output Control
 

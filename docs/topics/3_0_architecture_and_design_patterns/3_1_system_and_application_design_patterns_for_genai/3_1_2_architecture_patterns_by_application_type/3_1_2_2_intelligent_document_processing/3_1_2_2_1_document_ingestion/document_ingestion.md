@@ -9,7 +9,7 @@
 
 ## Suggested Pre-Reading
 
-[Previous page: Intelligent Document Processing Concepts](../index.md)
+[Intelligent Document Processing Concepts](../index.md)
 
 ## TL;DR:
 

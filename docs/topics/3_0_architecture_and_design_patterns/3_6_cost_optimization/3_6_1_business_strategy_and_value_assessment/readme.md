@@ -66,15 +66,23 @@ Organizations typically progress through three main stages of GenAI adoption:
 To measure success, organizations should track both quantitative and qualitative metrics:
 
 **Quantitative Metrics:**
+
 * Cost reduction
+
 * Revenue growth
+
 * Time savings
+
 * Error rate reduction
 
 **Qualitative Benefits:**
+
 * Employee satisfaction
+
 * Customer experience
+
 * Innovation capability
+
 * Market positioning
 
 ## Making it practical
