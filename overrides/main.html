@@ -4,11 +4,13 @@
   <!-- Content Security Policy -->
   <meta 
     http-equiv="Content-Security-Policy" 
-    content="font-src 'self' data: assets/fonts/ assets/external/fonts.gstatic.com assets/external/fonts.googleapis.com assets/external/fonts.gstatic.com/s/roboto/v47; 
-             style-src 'self' 'unsafe-inline' data: assets/fonts/ assets/external/fonts.gstatic.com assets/external/fonts.googleapis.com assets/external/fonts.gstatic.com/s/roboto/v47; 
-             connect-src 'self' data: *.amazonaws.com cognito-identity.us-west-2.amazonaws.com; 
-             script-src 'self' 'unsafe-inline' 'unsafe-eval' data:;
-             img-src 'self' data:;"
+    content="default-src 'self';
+             font-src 'self' data: assets/fonts/ assets/external/fonts.gstatic.com assets/external/fonts.googleapis.com assets/external/fonts.gstatic.com/s/roboto/v47; 
+             style-src 'self' 'unsafe-inline' assets/fonts/ assets/external/fonts.gstatic.com assets/external/fonts.googleapis.com assets/external/fonts.gstatic.com/s/roboto/v47; 
+             connect-src 'self' firehose.us-west-2.amazonaws.com cognito-identity.us-west-2.amazonaws.com; 
+             script-src 'self' 'unsafe-inline';
+             img-src 'self' data:;
+             upgrade-insecure-requests;"
   >
   <!-- Additional Security Headers -->
   <meta http-equiv="X-Frame-Options" content="DENY">
