@@ -42,7 +42,7 @@ dependencies = [
     "pathspec==0.12.1",
     "pillow==12.1.1",
     "pycparser==2.22",
-    "pydyf==0.11.0",
+    "pydyf==0.12.1",
     "pymdown-extensions==10.16.1",
     "pyphen==0.17.2",
     "python-dateutil==2.9.0.post0",
@@ -54,19 +54,19 @@ dependencies = [
     "soupsieve==2.6",
     "super-collections==0.5.3",
     "termcolor==2.5.0",
-    "tinycss2==1.4.0",
+    "tinycss2==1.5.1",
     "tinyhtml5==2.0.0",
     "tomli==2.2.1",
     "typing-extensions==4.12.2",
     "urllib3==2.6.3",
     "watchdog==6.0.0",
-    "weasyprint==52.5",
+    "weasyprint==68.1",
     "webencodings==0.5.1",
 ]
 
 [tool.uv]
 override-dependencies = [
-    "mkdocs-to-pdf==0.10.1; python_version >= '3.9'",
-    "weasyprint==52.5; python_version >= '3.9'",
-    "pydyf==0.11.0; python_version >= '3.9'"
+    "weasyprint==68.1",
+    "pydyf==0.12.1",
 ]
+

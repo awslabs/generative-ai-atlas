@@ -1,0 +1,21 @@
+// Override Material theme web-layout rules that break PDF anchor resolution.
+//
+// Material sets html{font-size:125%} and body{font-size:.5rem;display:flex}
+// which compresses the PDF layout so heavily that weasyprint's
+// target-counter() fails to resolve page numbers for most TOC entries.
+//
+// These overrides neutralize the web-layout rules while preserving all
+// other Material styling (typography, colors, tables, admonitions, etc.).
+
+html {
+  font-size: 100% !important;
+  height: auto !important;
+  overflow-x: visible !important;
+}
+
+body {
+  font-size: 10.5pt !important;
+  display: block !important;
+  min-height: auto !important;
+  position: static !important;
+}
