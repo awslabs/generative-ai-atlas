@@ -1,0 +1,82 @@
+[project]
+name = "genai-atlas-mcp-server"
+version = "0.1.0"
+description = "Model Context Protocol (MCP) server for the AWS Generative AI Atlas — search, browse, and retrieve expert-verified GenAI knowledge"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = [
+    "mcp[cli]>=1.23.0",
+    "httpx>=0.27.0",
+    "loguru>=0.7.0",
+    "pydantic>=2.10.6",
+    "beautifulsoup4>=4.12.0",
+    "markdownify>=1.1.0",
+]
+license = {text = "Apache-2.0"}
+authors = [
+    {name = "Amazon Web Services"},
+]
+classifiers = [
+    "License :: OSI Approved :: Apache Software License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+]
+
+[project.urls]
+Homepage = "https://awslabs.github.io/generative-ai-atlas/"
+Documentation = "https://awslabs.github.io/generative-ai-atlas/"
+Repository = "https://github.com/awslabs/generative-ai-atlas"
+Issues = "https://github.com/awslabs/generative-ai-atlas/issues"
+
+[project.scripts]
+"genai-atlas-mcp-server" = "genai_atlas_mcp_server.server:main"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.9.7",
+    "pyright>=1.1.398",
+    "pytest>=8.0.0",
+    "pytest-asyncio>=0.26.0",
+    "pytest-cov>=4.1.0",
+    "pytest-mock>=3.12.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["genai_atlas_mcp_server"]
+
+[tool.ruff]
+line-length = 99
+exclude = [".venv", "**/__pycache__", "**/dist", "**/build"]
+
+[tool.ruff.lint]
+select = ["C", "D", "E", "F", "I", "W"]
+ignore = ["C901", "E501", "D100", "D106"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+
+[tool.pytest.ini_options]
+python_files = "test_*.py"
+python_functions = "test_*"
+testpaths = ["tests"]
+asyncio_mode = "auto"
+markers = [
+    "live: marks tests that make live API calls",
+    "asyncio: marks tests that use asyncio",
+]
+
+[tool.coverage.run]
+source = ["genai_atlas_mcp_server"]
