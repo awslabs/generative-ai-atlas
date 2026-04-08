@@ -9,8 +9,8 @@
 
 ## Suggested Pre-Reading
 
-- Introduction to Generative AI
-- Fundamentals of Machine Learning Ethics
+- [Introduction to Generative AI](https://skillbuilder.aws/learn/ZEVZZ1D4AS/introduction-to-generative-ai--art-of-the-possible/Y7MTGJCW1U){:target="_blank" rel="noopener noreferrer"}
+- [Fundamentals of Machine Learning Ethics](https://skillbuilder.aws/learn/16ASDUHF86/fundamentals-of-machine-learning-and-artificial-intelligence/M7JZCTA94N){:target="_blank" rel="noopener noreferrer"}
 
 ## TL;DR
 
