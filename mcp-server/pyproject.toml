@@ -1,7 +1,7 @@
 [project]
 name = "genai-atlas-mcp-server"
 version = "0.1.0"
-description = "Model Context Protocol (MCP) server for the AWS Generative AI Atlas — search, browse, and retrieve expert-verified GenAI knowledge"
+description = "Model Context Protocol (MCP) server for the Generative AI Atlas — search, browse, and retrieve expert-verified GenAI knowledge"
 readme = "README.md"
 requires-python = ">=3.10"
 dependencies = [

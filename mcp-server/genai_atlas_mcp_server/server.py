@@ -30,7 +30,7 @@ INSTRUCTIONS = """
 # Generative AI Atlas MCP Server
 
 This server provides tools to search, browse, and retrieve content from the
-AWS Generative AI Atlas — a comprehensive, expert-verified knowledge hub for
+Generative AI Atlas — a comprehensive, expert-verified knowledge hub for
 GenAI implementation.
 
 ## Tool Selection Guide

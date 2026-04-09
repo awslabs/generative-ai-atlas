@@ -1,6 +1,6 @@
 # Generative AI Atlas MCP Server
 
-Model Context Protocol (MCP) server for the [AWS Generative AI Atlas](https://awslabs.github.io/generative-ai-atlas/) — search, browse, and retrieve expert-verified GenAI knowledge directly from your AI coding assistant.
+Model Context Protocol (MCP) server for the [Generative AI Atlas](https://awslabs.github.io/generative-ai-atlas/) — search, browse, and retrieve expert-verified GenAI knowledge directly from your AI coding assistant.
 
 ## Features
 
