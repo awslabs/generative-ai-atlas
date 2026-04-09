@@ -88,6 +88,14 @@
 
     <div class="md-header__buttons">
 
+      <!-- Use with AI dropdown -->
+      <div class="md-header__button use-with-ai-wrapper">
+        <button class="use-with-ai-btn" id="use-with-ai-btn" aria-label="Add to IDE">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24"><path fill="currentColor" d="M21.7 13.35L20.7 14.35L18.65 12.3L19.65 11.3C19.86 11.09 20.21 11.09 20.42 11.3L21.7 12.58C21.91 12.79 21.91 13.14 21.7 13.35M12 18.94L18.06 12.88L20.11 14.93L14.06 21H12V18.94M12 14C7.58 14 4 15.79 4 18V20H10V18.11L14 14.11C13.34 14.03 12.67 14 12 14M12 4A4 4 0 0 0 8 8A4 4 0 0 0 12 12A4 4 0 0 0 16 8A4 4 0 0 0 12 4Z"/></svg>
+          <span>Add to IDE</span>
+        </button>
+      </div>
+
       <a class="md-header__button download-pdf" href="{{ base_url }}/pdf/genai-atlas.pdf" target="_blank"
         rel="noopener noreferrer">
         {% include ".icons/material/file-pdf-box.svg" %}
@@ -116,3 +124,129 @@
   {% endif %}
   {% endif %}
 </header>
+
+<!-- Use with AI Modal -->
+<div id="ai-modal" class="ai-modal">
+  <div class="ai-modal__panel">
+    <div class="ai-modal__header">
+      <h3>Add Atlas to your IDE</h3>
+      <button class="ai-modal__close" aria-label="Close">&times;</button>
+    </div>
+    <p class="ai-modal__desc">Connect your AI coding assistant to the Generative AI Atlas — delivering current, expert-verified technical content for generative AI implementation, directly in your IDE.</p>
+
+    <div class="ai-modal__tabs">
+      <button class="ai-modal__tab ai-modal__tab--active" onclick="switchAiTab(event, 'tab-kiro')">Kiro</button>
+      <button class="ai-modal__tab" onclick="switchAiTab(event, 'tab-claude')">Claude Code</button>
+      <button class="ai-modal__tab" onclick="switchAiTab(event, 'tab-cursor')">Cursor</button>
+    </div>
+
+    <div id="tab-kiro" class="ai-modal__content ai-modal__content--active">
+      <p>Add to <code>.kiro/settings/mcp.json</code> (project) or <code>~/.kiro/settings/mcp.json</code> (global):</p>
+      <div class="ai-modal__code-wrap">
+        <pre><code>{
+  "mcpServers": {
+    "genai-atlas": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/awslabs/generative-ai-atlas.git#subdirectory=mcp-server",
+        "genai-atlas-mcp-server"
+      ],
+      "env": { "FASTMCP_LOG_LEVEL": "ERROR" }
+    }
+  }
+}</code></pre>
+        <button class="ai-modal__copy" onclick="copyAiConfig(this)" aria-label="Copy to clipboard">Copy</button>
+      </div>
+    </div>
+
+    <div id="tab-claude" class="ai-modal__content">
+      <p>Add to <code>.mcp.json</code> (project) or <code>~/.claude.json</code> (global):</p>
+      <div class="ai-modal__code-wrap">
+        <pre><code>{
+  "mcpServers": {
+    "genai-atlas": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/awslabs/generative-ai-atlas.git#subdirectory=mcp-server",
+        "genai-atlas-mcp-server"
+      ]
+    }
+  }
+}</code></pre>
+        <button class="ai-modal__copy" onclick="copyAiConfig(this)" aria-label="Copy to clipboard">Copy</button>
+      </div>
+    </div>
+
+    <div id="tab-cursor" class="ai-modal__content">
+      <p>Add to <code>.cursor/mcp.json</code>:</p>
+      <div class="ai-modal__code-wrap">
+        <pre><code>{
+  "mcpServers": {
+    "genai-atlas": {
+      "command": "uvx",
+      "args": [
+        "--from",
+        "git+https://github.com/awslabs/generative-ai-atlas.git#subdirectory=mcp-server",
+        "genai-atlas-mcp-server"
+      ]
+    }
+  }
+}</code></pre>
+        <button class="ai-modal__copy" onclick="copyAiConfig(this)" aria-label="Copy to clipboard">Copy</button>
+      </div>
+    </div>
+
+    <div class="ai-modal__footer">
+      <span class="ai-modal__prereq">Requires <a href="https://docs.astral.sh/uv/getting-started/installation/" target="_blank" rel="noopener noreferrer">uv</a> &amp; Python 3.10+</span>
+      <a href="https://github.com/awslabs/generative-ai-atlas/tree/main/mcp-server" target="_blank" rel="noopener noreferrer" class="ai-modal__link">View on GitHub →</a>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  var btn = document.getElementById('use-with-ai-btn');
+  var modal = document.getElementById('ai-modal');
+  var closeBtn = modal.querySelector('.ai-modal__close');
+
+  btn.addEventListener('click', function(e) {
+    e.preventDefault();
+    e.stopPropagation();
+    modal.classList.toggle('ai-modal--open');
+  });
+
+  closeBtn.addEventListener('click', function(e) {
+    e.preventDefault();
+    modal.classList.remove('ai-modal--open');
+  });
+
+  modal.addEventListener('click', function(e) {
+    if (e.target === modal) {
+      modal.classList.remove('ai-modal--open');
+    }
+  });
+
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape' && modal.classList.contains('ai-modal--open')) {
+      modal.classList.remove('ai-modal--open');
+    }
+  });
+});
+
+function switchAiTab(e, tabId) {
+  document.querySelectorAll('.ai-modal__tab').forEach(function(t) { t.classList.remove('ai-modal__tab--active'); });
+  document.querySelectorAll('.ai-modal__content').forEach(function(c) { c.classList.remove('ai-modal__content--active'); });
+  e.target.classList.add('ai-modal__tab--active');
+  document.getElementById(tabId).classList.add('ai-modal__content--active');
+}
+
+function copyAiConfig(btn) {
+  var code = btn.previousElementSibling.querySelector('code').textContent;
+  navigator.clipboard.writeText(code).then(function() {
+    btn.textContent = 'Copied!';
+    setTimeout(function() { btn.textContent = 'Copy'; }, 2000);
+  });
+}
+</script>
