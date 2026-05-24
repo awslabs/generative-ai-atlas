@@ -22,14 +22,25 @@ Finally, launch the site locally using the `mkdocs serve` command from the root 
 
 ### Dependency Troubleshooting
 
-If you encounter dependency-related errors during setup (e.g., `jpeg`, `cairo-2`, or other image processing libraries), please refer to the [Material for MkDocs Image Processing Requirements](https://squidfunk.github.io/mkdocs-material/plugins/requirements/image-processing/) documentation for platform-specific installation instructions.
+The PDF plugin (mkdocs-to-pdf) uses WeasyPrint, which requires system-level libraries.
 
-Common errors include:
-- `The headers or library files could not be found for jpeg`
-- `no library called "cairo-2" was found`
-- Missing `pango` or `gdk-pixbuf` dependencies
+**macOS (Homebrew):**
 
-The above documentation provides comprehensive guidance for resolving these issues on various operating systems.
+```bash
+brew install pango gdk-pixbuf libffi
+```
+
+On Apple Silicon, the dynamic linker may not find the Homebrew libraries automatically. If you see errors like `cannot load library 'libgobject-2.0-0'`, set the library path:
+
+```bash
+export DYLD_FALLBACK_LIBRARY_PATH=/opt/homebrew/lib
+```
+
+Add this to your `~/.zshrc` to make it persistent. Then run `mkdocs serve` as usual.
+
+**Other platforms:**
+
+If you encounter dependency-related errors (e.g., `jpeg`, `cairo-2`, or other image processing libraries), refer to the [Material for MkDocs Image Processing Requirements](https://squidfunk.github.io/mkdocs-material/plugins/requirements/image-processing/) and [WeasyPrint installation docs](https://doc.courtbouillon.org/weasyprint/stable/first_steps.html#installation) for platform-specific instructions.
 
 ## License Summary
 
