@@ -51,7 +51,7 @@ dependencies = [
     "requests==2.33.0",
     "six==1.17.0",
     "smmap==5.0.2",
-    "soupsieve==2.6",
+    "soupsieve==2.8.4",
     "super-collections==0.5.3",
     "termcolor==2.5.0",
     "tinycss2==1.5.1",
