@@ -60,13 +60,13 @@ dependencies = [
     "typing-extensions==4.12.2",
     "urllib3==2.7.0",
     "watchdog==6.0.0",
-    "weasyprint==68.1",
+    "weasyprint==70.0",
     "webencodings==0.5.1",
 ]
 
 [tool.uv]
 override-dependencies = [
-    "weasyprint==68.1",
+    "weasyprint==70.0",
     "pydyf==0.12.1",
 ]
 
